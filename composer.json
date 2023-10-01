@@ -1,0 +1,13 @@
+{
+    "name": "mulekotd/simple-crud",
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mulekotd",
+            "email": "joaopedro.gama0675@gmail.com"
+        }
+    ]
+}

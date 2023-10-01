@@ -1,0 +1,111 @@
+/* Reset CSS */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    height: 100vh;
+}
+
+/* Estilos para o título h1 */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para o parágrafo p */
+p {
+    margin-top: 20px;
+}
+
+/* Estilos para a navegação */
+nav.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+nav.container a {
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 200px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+nav.container a:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos específicos para a página "create" */
+.create-page {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.create-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.create-page form {
+    margin-top: 10px;
+}
+
+.create-page label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.create-page input[type="text"],
+.create-page input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para o botão "Submit" */
+.create-page .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.create-page .submit-button:hover {
+    background-color: #0056b3;
+}

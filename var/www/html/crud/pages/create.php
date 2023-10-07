@@ -12,7 +12,7 @@
     <h1>Adicionar um novo registro</h1>
 
     <div class="create-page">
-        
+
         <form action="/crud/pages/create.php" method="post">
             <label for="username">Nome: <input required type="text" name="name" id="name"/></label>
             <label for="email">Email: <input required type="text" name="email" id="email"/></label>

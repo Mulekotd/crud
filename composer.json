@@ -1,9 +1,8 @@
 {
-    "name": "mulekotd/simple-crud",
+    "name": "mulekotd/crud",
     "require": {
         "vlucas/phpdotenv": "^5.5"
     },
-    "license": "MIT",
     "authors": [
         {
             "name": "Mulekotd",

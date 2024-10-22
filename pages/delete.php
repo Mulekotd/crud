@@ -12,7 +12,7 @@
 
     <form action="scripts/delete_logic.php" method="post">
         <label for="record_id">Selecione o registro a ser excluído:</label>
-        <select name="record_id" id="record_id" required>
+        <select name="record_id" id="record_id">
             <?php
             include_once('../includes/db_connection.php');
 
@@ -25,12 +25,15 @@
                 while ($row = pg_fetch_assoc($result)) {
                     echo '<option value="' . $row['id'] . '">' . $row['id'] . '</option>';
                 }
+            } else {
+                echo '<option value="">Nenhum registro disponível</option>';
             }
+
             pg_close($conn);
             ?>
         </select>
 
-        <input type="submit" value="Excluir" onclick="showConfirmationModal(event)">
+        <input type="submit" value="Excluir" onclick="showConfirmationModal(event)" required <?php echo (pg_num_rows($result) == 0) ? 'disabled' : ''; ?>>
     </form>
 
     <div id="confirmationModal" class="modal">

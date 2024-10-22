@@ -14,15 +14,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updateResult = pg_query($conn, $updateQuery);
 
         if ($updateResult) {
-            echo "Registro excluído com sucesso!";
             header('Location: ../../index.php');
+            exit;
         } else {
-            echo "Erro ao atualizar IDs: " . pg_last_error($conn);
+            $error_message = "Erro ao atualizar IDs: " . pg_last_error($conn);
         }
     } else {
-        echo "Erro ao excluir o registro: " . pg_last_error($conn);
+        $error_message = "Erro ao excluir o registro: " . pg_last_error($conn);
     }
 
     pg_close($conn);
+}
+
+if (isset($error_message)) {
+    echo "<p>$error_message</p>";
 }
 ?>

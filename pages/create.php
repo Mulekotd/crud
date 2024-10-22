@@ -1,3 +1,37 @@
+<?php
+include_once('../includes/db_connection.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $conn = connectToDatabase();
+
+    $name = strtoupper($_POST['name']);
+    $email = $_POST['email'];
+    $age = $_POST['age'];
+
+    if (empty($name) || empty($email) || empty($age)) {
+        $error_message = "Erro ao adicionar o registro: Todos os campos são obrigatórios.";
+    } else {
+        $checkEmailQuery = "SELECT * FROM public.crud WHERE email = '$email'";
+        $checkEmailResult = pg_query($conn, $checkEmailQuery);
+
+        if (pg_num_rows($checkEmailResult) > 0) {
+            $error_message = "Erro ao adicionar o registro: Email já registrado.";
+        } else {
+            $sql = "INSERT INTO public.crud (name, email, age) VALUES ('$name', '$email', $age)";
+            $result = pg_query($conn, $sql);
+
+            if ($result) {
+                header('Location: ../index.php');
+                exit;
+            } else {
+                $error_message = "Erro ao adicionar o registro: " . pg_last_error($conn);
+            }
+        }
+    }
+    pg_close($conn);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,43 +54,12 @@
             <input class="submit-button" type="submit" value="Submit">
         </form>
 
-    </div>
-
-    <p>
         <?php
-            include_once('../includes/db_connection.php');
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $conn = connectToDatabase();
-
-                $name = strtoupper($_POST['name']);
-                $email = $_POST['email'];
-                $age = $_POST['age'];
-
-                if (empty($name) || empty($email) || empty($age)) {
-                    echo "Erro ao adicionar o registro: Todos os campos são obrigatórios.";
-                } else {
-                    $checkEmailQuery = "SELECT * FROM public.crud WHERE email = '$email'";
-                    $checkEmailResult = pg_query($conn, $checkEmailQuery);
-
-                    if (pg_num_rows($checkEmailResult) > 0) {
-                        echo "Erro ao adicionar o registro: Email já registrado.";
-                    } else {
-                        $sql = "INSERT INTO public.crud (name, email, age) VALUES ('$name', '$email', $age)";
-                        $result = pg_query($conn, $sql);
-
-                        if ($result) {
-                            echo "Registro adicionado com sucesso!";
-                            header('Location: ../index.php');
-                            exit;
-                        } else {
-                            echo "Erro ao adicionar o registro: " . pg_last_error($conn);
-                        }
-                    }
-                }
-                pg_close($conn);
-            }
+        if (isset($error_message)) {
+            echo "<p>$error_message</p>";
+        }
         ?>
-    </p>
+
+    </div>
 </body>
 </html>
